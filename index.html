@@ -24,15 +24,15 @@
 </head>
 <body class="bg-slate-50 text-slate-800 antialiased text-center">
 
-  <script>const GAS_WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbx29CpU-crebgErgcnBiwOjeiuNYtZWyYWfHAlxT4ya4ov0LZAvSvvOJ1aKqEBEK5Sj/exec';</script>
+  <script>const GAS_WEB_APP_URL = 'YOUR_NEW_GAS_URL_HERE';</script>
 
   <div id="app" class="flex-center p-4">
     
-    <div id="screen-lang" class="w-full max-w-md bg-white rounded-3xl shadow-2xl p-8 animate-in">
+    <div id="screen-lang" class="w-full max-w-md bg-white rounded-3xl shadow-2xl p-8 animate-in font-sans">
       <h1 class="text-3xl font-black text-indigo-900 mb-2">Welcome to twins stay</h1>
       <p class="text-slate-500 mb-8 italic text-sm text-center">Please select your language</p>
       <div class="grid grid-cols-2 gap-4">
-        <button onclick="startCheckin('ja')" class="py-4 bg-indigo-600 text-white rounded-2xl text-lg font-bold shadow-lg col-span-2">日本在住の方 (Japanese)</button>
+        <button onclick="startCheckin('ja')" class="py-4 bg-indigo-600 text-white rounded-2xl text-lg font-bold shadow-lg active:scale-95 transition col-span-2">日本在住の方 (Japanese)</button>
         <button onclick="startCheckin('en')" class="py-4 bg-slate-800 text-white rounded-2xl text-lg font-bold shadow-lg">English</button>
         <button onclick="startCheckin('zh-cn')" class="py-4 bg-slate-800 text-white rounded-2xl text-lg font-bold shadow-lg">简体中文</button>
         <button onclick="startCheckin('zh-tw')" class="py-4 bg-slate-800 text-white rounded-2xl text-lg font-bold shadow-lg">繁體中文</button>
@@ -43,20 +43,20 @@
     </div>
 
     <div id="screen-stay-info" class="hidden w-full max-w-md bg-white rounded-3xl shadow-2xl p-8 animate-in">
-      <h2 id="ui-stay-title" class="text-2xl font-black text-indigo-900 mb-6 text-center"></h2>
+      <h2 id="ui-stay-title" class="text-2xl font-black text-indigo-900 mb-6 text-center font-sans"></h2>
       <div class="space-y-6">
         <div class="bg-indigo-50 p-6 rounded-2xl border-2 border-indigo-100">
           <div class="mb-4">
             <label id="ui-label-people" class="text-sm md:text-lg font-bold text-indigo-700 block mb-2 text-center"></label>
-            <select id="numPeople" class="w-full bg-white border-2 border-indigo-200 rounded-xl p-4 font-black text-2xl text-indigo-900 outline-none text-center"></select>
+            <select id="numPeople" class="w-full bg-white border-2 border-indigo-200 rounded-xl p-4 font-black text-2xl text-indigo-900 outline-none text-center font-sans"></select>
           </div>
           <div>
             <label id="ui-label-nights" class="text-sm md:text-lg font-bold text-indigo-700 block mb-2 text-center"></label>
-            <select id="numNights" class="w-full bg-white border-2 border-indigo-200 rounded-xl p-4 font-black text-2xl text-indigo-900 outline-none text-center"></select>
+            <select id="numNights" class="w-full bg-white border-2 border-indigo-200 rounded-xl p-4 font-black text-2xl text-indigo-900 outline-none text-center font-sans"></select>
           </div>
         </div>
         <button onclick="toGuestForm()" id="ui-btn-stay-next" class="w-full bg-indigo-600 text-white py-5 rounded-2xl text-xl font-bold shadow-xl active:scale-95 transition"></button>
-        <button onclick="resetApp()" class="text-slate-400 text-sm mt-4 inline-block">← Back</button>
+        <button onclick="resetApp()" class="text-slate-400 text-sm mt-4 inline-block font-sans">← Back</button>
       </div>
     </div>
 
@@ -70,44 +70,44 @@
       <form id="checkinForm" class="space-y-6 text-left">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div class="md:col-span-2">
-            <label id="ui-label-name" class="block text-sm font-bold text-slate-700 mb-1"></label>
+            <label id="ui-label-name" class="block text-sm font-bold text-slate-700 mb-1 font-sans"></label>
             <input type="text" name="name" required class="w-full p-4 bg-slate-50 border-2 border-slate-200 rounded-xl text-lg outline-none font-sans">
           </div>
           <div class="md:col-span-2">
-            <div class="flex justify-between items-center mb-1">
-              <label id="ui-label-address" class="block text-sm font-bold text-slate-700"></label>
-              <button type="button" id="ui-btn-copy-address" onclick="copyLastAddress()" class="hidden text-xs bg-indigo-100 text-indigo-700 px-3 py-1 rounded-full font-bold font-sans">前の住所をコピー</button>
+            <div class="flex justify-between items-center mb-1 font-sans">
+              <label id="ui-label-address" class="block text-sm font-bold text-slate-700 font-sans"></label>
+              <button type="button" id="ui-btn-copy-address" onclick="copyLastAddress()" class="hidden text-xs bg-indigo-100 text-indigo-700 px-3 py-1 rounded-full font-bold">前の住所をコピー</button>
             </div>
             <textarea name="address" required rows="2" class="w-full p-4 bg-slate-50 border-2 border-slate-200 rounded-xl text-lg outline-none font-sans"></textarea>
           </div>
-          <div><label id="ui-label-job" class="block text-sm font-bold text-slate-700 mb-1"></label><input type="text" name="job" class="w-full p-4 bg-slate-50 border-2 border-slate-200 rounded-xl outline-none text-lg font-sans"></div>
-          <div><label id="ui-label-age" class="block text-sm font-bold text-slate-700 mb-1"></label><select name="age" id="field-age" class="w-full p-4 bg-slate-50 border-2 border-slate-200 rounded-xl outline-none text-lg font-sans"></select></div>
-          <div class="md:col-span-2">
+          <div><label id="ui-label-job" class="block text-sm font-bold text-slate-700 mb-1 font-sans"></label><input type="text" name="job" class="w-full p-4 bg-slate-50 border-2 border-slate-200 rounded-xl outline-none text-lg font-sans"></div>
+          <div><label id="ui-label-age" class="block text-sm font-bold text-slate-700 mb-1 font-sans"></label><select name="age" id="field-age" class="w-full p-4 bg-slate-50 border-2 border-slate-200 rounded-xl outline-none text-lg font-sans"></select></div>
+          <div class="md:col-span-2 font-sans font-bold">
             <label id="ui-label-gender" class="block text-sm font-bold text-slate-700 mb-2 font-sans"></label>
             <div class="flex flex-wrap gap-4 md:gap-8">
-              <label class="flex items-center cursor-pointer font-sans"><input type="radio" name="gender" value="Male" checked class="w-5 h-5 text-indigo-600 mr-2"> <span id="ui-val-male"></span></label>
-              <label class="flex items-center cursor-pointer font-sans"><input type="radio" name="gender" value="Female" class="w-5 h-5 text-indigo-600 mr-2"> <span id="ui-val-female"></span></label>
-              <label class="flex items-center cursor-pointer font-sans"><input type="radio" name="gender" value="Other" class="w-5 h-5 text-indigo-600 mr-2"> <span id="ui-val-other"></span></label>
+              <label class="flex items-center cursor-pointer"><input type="radio" name="gender" value="Male" checked class="w-5 h-5 text-indigo-600 mr-2"> <span id="ui-val-male"></span></label>
+              <label class="flex items-center cursor-pointer"><input type="radio" name="gender" value="Female" class="w-5 h-5 text-indigo-600 mr-2"> <span id="ui-val-female"></span></label>
+              <label class="flex items-center cursor-pointer"><input type="radio" name="gender" value="Other" class="w-5 h-5 text-indigo-600 mr-2"> <span id="ui-val-other"></span></label>
             </div>
           </div>
         </div>
 
         <div id="ui-section-passport" class="pt-4 border-t border-slate-100">
-          <div class="flex justify-between items-end mb-2">
-            <label id="ui-label-passport" class="block text-sm font-bold text-slate-700 font-sans"></label>
-            <button type="button" id="switchBtn" onclick="toggleCamera()" class="hidden text-xs bg-slate-200 px-4 py-2 rounded-full font-bold text-slate-600 font-sans font-sans">🔄 Switch Camera</button>
+          <div class="flex justify-between items-end mb-2 font-sans font-bold">
+            <label id="ui-label-passport" class="block text-sm font-bold text-slate-700"></label>
+            <button type="button" id="switchBtn" onclick="toggleCamera()" class="hidden text-xs bg-slate-200 px-4 py-2 rounded-full font-bold text-slate-600">🔄 Switch Camera</button>
           </div>
           <div class="camera-container aspect-[4/3]">
             <video id="video" autoplay playsinline class="w-full h-full object-cover"></video>
-            <canvas id="canvas" class="hidden font-sans"></canvas>
-            <img id="photoPreview" class="hidden w-full h-full object-cover absolute top-0 left-0 font-sans">
+            <canvas id="canvas" class="hidden"></canvas>
+            <img id="photoPreview" class="hidden w-full h-full object-cover absolute top-0 left-0">
           </div>
           <div class="mt-4 flex gap-3 font-sans">
             <button type="button" onclick="takePhoto()" id="snapBtn" class="flex-1 bg-slate-800 text-white py-4 rounded-xl font-bold shadow-lg active:scale-95 transition"></button>
-            <button type="button" onclick="retakePhoto()" id="retakeBtn" class="hidden flex-1 bg-amber-500 text-white py-4 rounded-xl font-sans"></button>
+            <button type="button" onclick="retakePhoto()" id="retakeBtn" class="hidden flex-1 bg-amber-500 text-white py-4 rounded-xl font-bold font-sans"></button>
           </div>
         </div>
-        <input type="hidden" name="passportData" id="passportData" class="font-sans">
+        <input type="hidden" name="passportData" id="passportData">
 
         <div class="flex gap-4 pt-4 font-sans font-bold">
           <button type="button" onclick="nextGuest()" id="ui-btn-next-guest" class="flex-1 bg-indigo-100 text-indigo-700 py-5 rounded-2xl shadow-sm hover:bg-indigo-200 transition"></button>
@@ -117,40 +117,40 @@
     </div>
 
     <div id="screen-confirm" class="hidden w-full max-w-2xl bg-white rounded-3xl shadow-2xl p-6 md:p-10 animate-in font-sans">
-      <h2 id="ui-confirm-title" class="text-2xl font-black text-indigo-900 mb-2 border-b pb-2 text-left font-sans font-bold font-sans"></h2>
-      <div id="mismatch-alert" class="hidden bg-red-50 border-2 border-red-200 rounded-xl p-4 mb-6 text-left font-sans font-bold font-sans">
-        <p id="ui-mismatch-msg" class="text-red-600 font-bold text-sm leading-relaxed"></p>
+      <h2 id="ui-confirm-title" class="text-2xl font-black text-indigo-900 mb-2 border-b pb-2 text-left font-sans font-bold"></h2>
+      <div id="mismatch-alert" class="hidden bg-red-50 border-2 border-red-200 rounded-xl p-4 mb-6 text-left font-sans font-bold">
+        <p id="ui-mismatch-msg" class="text-red-600 font-bold text-sm leading-relaxed font-sans font-bold"></p>
       </div>
       <div id="confirm-list" class="space-y-8 mb-8 text-lg max-h-[50vh] overflow-y-auto px-2 text-left font-sans"></div>
       <div class="flex gap-4 font-sans">
-        <button onclick="backToGuestLoop()" id="ui-btn-confirm-back" class="flex-1 py-4 bg-slate-200 rounded-xl font-bold text-slate-600 font-sans font-bold font-sans">← Edit</button>
-        <button onclick="showPayment()" id="ui-btn-confirm-next" class="flex-1 py-4 bg-indigo-600 rounded-xl font-bold text-white shadow-lg disabled:bg-slate-300 font-sans font-bold font-sans"></button>
+        <button onclick="backToGuestLoop()" id="ui-btn-confirm-back" class="flex-1 py-4 bg-slate-200 rounded-xl font-bold text-slate-600 font-sans font-bold">← Edit</button>
+        <button onclick="showPayment()" id="ui-btn-confirm-next" class="flex-1 py-4 bg-indigo-600 rounded-xl font-bold text-white shadow-lg disabled:bg-slate-300 font-sans font-bold"></button>
       </div>
     </div>
 
-    <div id="screen-payment" class="hidden w-full max-w-lg bg-white rounded-3xl shadow-2xl p-8 text-center animate-in font-sans font-bold font-sans">
+    <div id="screen-payment" class="hidden w-full max-w-lg bg-white rounded-3xl shadow-2xl p-8 text-center animate-in font-sans font-bold">
       <div class="text-5xl mb-4 text-indigo-600 font-sans">💰</div>
-      <h2 id="ui-pay-amount-label" class="text-slate-500 font-bold mb-1 font-sans"></h2>
-      <p class="text-5xl font-black text-indigo-600 mb-8 font-sans font-sans font-sans">¥ <span id="payTotal"></span></p>
-      <div class="bg-amber-50 border-2 border-amber-200 p-6 rounded-2xl mb-8 font-sans">
-        <p id="ui-pay-instruction" class="text-lg font-bold text-amber-800 leading-relaxed font-sans font-sans"></p>
+      <h2 id="ui-pay-amount-label" class="text-slate-500 font-bold mb-1 font-sans font-bold uppercase"></h2>
+      <p class="text-5xl font-black text-indigo-600 mb-8 font-sans font-sans font-bold tracking-tighter">¥ <span id="payTotal"></span></p>
+      <div class="bg-amber-50 border-2 border-amber-200 p-6 rounded-2xl mb-8 font-sans font-bold">
+        <p id="ui-pay-instruction" class="text-lg font-bold text-amber-800 leading-relaxed font-sans font-bold"></p>
       </div>
-      <button onclick="submitAll()" id="ui-btn-pay-complete" class="w-full bg-green-600 text-white font-black py-5 rounded-2xl text-xl shadow-xl active:scale-95 transition font-sans font-bold font-sans font-sans"></button>
+      <button onclick="submitAll()" id="ui-btn-pay-complete" class="w-full bg-green-600 text-white font-black py-5 rounded-2xl text-xl shadow-xl active:scale-95 transition font-sans font-bold font-sans"></button>
     </div>
 
     <div id="screen-success" class="hidden w-full max-w-lg bg-white rounded-3xl shadow-2xl p-10 text-center animate-in font-sans">
       <div class="text-8xl mb-6 text-center">🏮</div>
-      <h2 id="ui-success-msg" class="text-2xl font-bold text-slate-800 mb-8 leading-relaxed text-center font-sans font-bold font-sans font-sans font-bold"></h2>
-      <div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden mb-4 font-sans font-sans font-sans font-bold">
+      <h2 id="ui-success-msg" class="text-2xl font-bold text-slate-800 mb-8 leading-relaxed text-center font-sans font-bold"></h2>
+      <div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden mb-4 font-sans font-bold">
         <div id="progressBar" class="bg-indigo-600 h-full w-0" style="width: 0%;"></div>
       </div>
-      <p class="text-xs text-slate-400 italic text-center font-sans font-sans font-sans font-bold font-sans">Auto reset in 5 seconds...</p>
+      <p class="text-xs text-slate-400 italic text-center font-sans font-bold">Auto reset in 5 seconds...</p>
     </div>
 
   </div>
 
   <script>
-    // プルダウン、i18n、各画面遷移ロジック（そのまま維持）
+    // プルダウン生成
     window.addEventListener('DOMContentLoaded', () => {
       const pS = document.getElementById('numPeople');
       for (let i = 1; i <= 6; i++) { let o = document.createElement('option'); o.value = i; o.innerText = i; pS.appendChild(o); }
@@ -171,86 +171,79 @@
         payMsg: "備え付けのBOXへ宿泊税をお支払いください", payComplete: "支払いが完了しました",
         success: "お支払いありがとうございました！<br>高山でのご滞在をお楽しみください！",
         guidance: "ご宿泊者様全員分（12歳以下も含む）の情報入力をお願いいたします",
-        mismatchMsg: "⚠️ 最初に選択した人数と登録された宿泊者の年齢に相違があります。入力を修正してください。",
-        alertPhoto: "", alertField: "必須項目を入力してください。"
+        mismatchMsg: "⚠️ 最初に選択した人数と登録された宿泊者の年齢に相違があります。入力を修正してください。"
       },
       en: {
         passportRequired: true, stayTitle: "Stay Details", people: "Number of People (12+)", nights: "Nights", stayNext: "Next",
-        title: "Guest Registration", name: "Full Name", address: "Residential Address", copyAddress: "Copy previous address",
+        title: "Guest Registration", name: "Full Name", address: "Residential Address", copyAddress: "Same as previous",
         job: "Occupation", age: "Age", gender: "Gender", male: "Male", female: "Female", other: "Other",
-        passport: "Passport Photo", snap: "📷 Take Passport Photo", retake: "🔄 Retake",
+        passport: "Passport", snap: "📷 Take Passport Photo", retake: "🔄 Retake",
         nextGuest: "Add Next Guest", toConfirm: "Review All Info",
-        confirmTitle: "Review Information", back: "Edit Info", next: "Proceed to Payment", payLabel: "Tax Total",
+        confirmTitle: "Review Information", back: "Edit", next: "Proceed to Payment", payLabel: "Tax Total",
         payMsg: "Please pay the accommodation tax into the box provided", payComplete: "Payment Completed",
-        success: "Thank you!<br>Enjoy your wonderful stay in Takayama!",
-        guidance: "Please enter information for all guests (including children under 12).",
-        mismatchMsg: "⚠️ Age mismatch detected based on your initial selection. Please correct.",
-        alertPhoto: "Please take a passport photo.", alertField: "Please fill in all fields."
+        success: "Thank you!<br>Enjoy your wonderful stay!",
+        guidance: "Please enter information for all guests (including children).",
+        mismatchMsg: "⚠️ Number of adults detected does not match initial selection."
       },
       es: {
-        passportRequired: true, stayTitle: "Detalles", people: "Personas (12+)", nights: "Noches", stayNext: "Siguiente",
-        title: "Ficha de Registro", name: "Nombre completo", address: "Dirección", copyAddress: "Misma dirección",
-        job: "Ocupación", age: "Edad", gender: "Género", male: "Masculino", female: "Femenino", other: "No decir",
-        passport: "Pasaporte", snap: "📷 Tomar foto pasaporte", retake: "🔄 Repetir",
+        passportRequired: true, stayTitle: "Información", people: "Personas (12+)", nights: "Noches", stayNext: "Siguiente",
+        title: "Ficha de Registro", name: "Nombre", address: "Dirección", copyAddress: "Misma dirección",
+        job: "Ocupación", age: "Edad", gender: "Género", male: "Hombre", female: "Mujer", other: "No decir",
+        passport: "Pasaporte", snap: "📷 Foto del pasaporte", retake: "🔄 Repetir",
         nextGuest: "Añadir acompañante", toConfirm: "Revisar todo",
         confirmTitle: "Confirmar Datos", back: "Modificar", next: "Ir al Pago", payLabel: "Tasa Total",
         payMsg: "Por favor, deposite la tasa turística en la caja proporcionada", payComplete: "Pago Realizado",
-        success: "¡Gracias!<br>¡Disfrute de su estancia en Takayama!",
-        guidance: "Introduzca los datos de todos los huéspedes (niños incluidos).",
-        mismatchMsg: "⚠️ Incoherencia en el número de adultos. Por favor corrija los datos.",
-        alertPhoto: "Foto de pasaporte necesaria.", alertField: "Rellene todos los campos."
+        success: "¡Gracias!<br>¡Disfrute de su estancia!",
+        guidance: "Introduzca los datos de todos los huéspedes (incluidos niños).",
+        mismatchMsg: "⚠️ Incoherencia en el número de adultos."
       },
       fr: {
         passportRequired: true, stayTitle: "Séjour", people: "Personnes (12+)", nights: "Nuits", stayNext: "Suivant",
-        title: "Fiche d'Enregistrement", name: "Nom complet", address: "Adresse", copyAddress: "Même adresse",
+        title: "Enregistrement", name: "Nom Complet", address: "Adresse", copyAddress: "Même adresse",
         job: "Occupation", age: "Âge", gender: "Genre", male: "Homme", female: "Femme", other: "Non précisé",
         passport: "Passeport", snap: "📷 Photo du passeport", retake: "🔄 Reprendre",
         nextGuest: "Ajouter client", toConfirm: "Vérifier",
         confirmTitle: "Vérification", back: "Modifier", next: "Paiement", payLabel: "Taxe de Séjour",
         payMsg: "Veuillez déposer la taxe de séjour dans la boîte prévue", payComplete: "Paiement Effectué",
         success: "Merci !<br>Bon séjour à Takayama !",
-        guidance: "Saisissez les informations de tous les clients (enfants inclus).",
-        mismatchMsg: "⚠️ Incohérence du nombre d'adultes. Veuillez corriger.",
-        alertPhoto: "Photo du passeport requise.", alertField: "Veuillez remplir tous les champs."
+        guidance: "Veuillez saisir les informações de tous les clients.",
+        mismatchMsg: "⚠️ Incohérence du nombre d'adultes."
       },
       "zh-cn": {
         passportRequired: true, stayTitle: "住宿信息", people: "入住人数 (12岁以上)", nights: "住宿天数", stayNext: "下一步",
-        title: "入住登记表", name: "姓名 (全名)", address: "居住地址", copyAddress: "使用同伴地址",
+        title: "入住登记表", name: "姓名", address: "居住地址", copyAddress: "使用同伴地址",
         job: "职业", age: "年龄", gender: "性别", male: "男", female: "女", other: "不便透露",
-        passport: "拍摄护照", snap: "📷 拍摄护照照片", retake: "🔄 重拍",
+        passport: "拍摄护照", snap: "📷 拍摄护照", retake: "🔄 重拍",
         nextGuest: "添加随行人员", toConfirm: "核对信息",
         confirmTitle: "确认入住信息", back: "修改", next: "去支付", payLabel: "宿泊税总额",
         payMsg: "请将宿泊税放入指定的税箱内", payComplete: "支付完成",
         success: "感谢！<br>祝您在高山度过愉快的时光！",
         guidance: "请填写所有随行人员（包括儿童）的信息。",
-        mismatchMsg: "⚠️ 初始选择的人数与实际年龄信息不符，请修正。",
-        alertPhoto: "请拍摄护照。", alertField: "请填写所有必填项。"
+        mismatchMsg: "⚠️ 人数不符，请修正。"
       },
       "zh-tw": {
         passportRequired: true, stayTitle: "住宿資訊", people: "入住人數 (12歲以上)", nights: "住宿天數", stayNext: "下一步",
-        title: "入住登記表", name: "姓名 (全稱)", address: "居住地址", copyAddress: "使用同伴地址",
+        title: "入住登記表", name: "姓名", address: "居住地址", copyAddress: "使用同伴地址",
         job: "職業", age: "年齡", gender: "性別", male: "男", female: "女", other: "不便透露",
-        passport: "拍攝護照", snap: "📷 拍攝護照照片", retake: "🔄 重拍",
+        passport: "拍攝護照", snap: "📷 拍攝護照", retake: "🔄 重拍",
         nextGuest: "添加隨行人員", toConfirm: "核對資訊",
         confirmTitle: "確認入住資訊", back: "修改", next: "去支付", payLabel: "宿泊稅總額",
         payMsg: "請將宿泊稅放入指定的稅箱內", payComplete: "支付完成",
         success: "感謝！<br>祝您在高山度過愉快的時光！",
         guidance: "請填寫所有隨行人員（包括兒童）的資訊。",
-        mismatchMsg: "⚠️ 人數不符，請修正。",
-        alertPhoto: "請拍攝護照。", alertField: "請填寫所有必填項。"
+        mismatchMsg: "⚠️ 人數不符，請修正。"
       },
       ko: {
         passportRequired: true, stayTitle: "숙박 정보", people: "숙박 인원 (12세 이상)", nights: "숙박 일수", stayNext: "다음",
-        title: "투숙객 명부 작성", name: "성함 (전체 이름)", address: "주소", copyAddress: "동행인과 동일 주소",
+        title: "투숙객 명부 작성", name: "성함", address: "주소", copyAddress: "동행인과 동일 주소",
         job: "직업", age: "연령", gender: "성별", male: "남성", female: "여성", other: "응답안함",
-        passport: "여권 촬영", snap: "📷 여권 촬영하기", retake: "🔄 다시 촬영",
+        passport: "여권 촬영", snap: "📷 여권 사진 촬영", retake: "🔄 다시 촬영",
         nextGuest: "다음 투숙객 추가", toConfirm: "정보 확인",
         confirmTitle: "내용 확인", back: "수정하기", next: "결제하기", payLabel: "총 숙박세",
-        payMsg: "비치된 전용 박스に 숙박세를 지불해 주세요", payComplete: "결제 완료",
+        payMsg: "비치된 전용 박스에 숙박세를 지불해 주세요", payComplete: "결제 완료",
         success: "감사합니다!<br>다카야마에서 즐거운 시간 보내세요!",
         guidance: "어린이를 포함한 전원의 정보를 입력해 주십시오.",
-        mismatchMsg: "⚠️ 인원 정보 불일치가 감지되었습니다. 수정해 주세요.",
-        alertPhoto: "여권을 촬영해 주세요.", alertField: "모든 항목을 입력해 주세요."
+        mismatchMsg: "⚠️ 인원 정보 불일치가 감지되었습니다."
       }
     };
 
@@ -264,15 +257,13 @@
       ['screen-lang', 'screen-stay-info', 'screen-form', 'screen-confirm', 'screen-payment', 'screen-success'].forEach(id => {
         const el = document.getElementById(id); if (el) el.classList.add('hidden');
       });
-      const t = document.getElementById(screenId); if (t) t.classList.remove('hidden');
-      window.scrollTo(0,0);
+      document.getElementById(screenId).classList.remove('hidden'); window.scrollTo(0,0);
     }
 
     function resetApp() {
       if (currentStream) currentStream.getTracks().forEach(t => t.stop());
       currentStream = null; guests = []; currentGuestIdx = 0;
-      const f = document.getElementById('checkinForm'); if(f) f.reset();
-      showScreen('screen-lang');
+      document.getElementById('checkinForm').reset(); showScreen('screen-lang');
     }
 
     function startCheckin(lang) {
@@ -326,6 +317,7 @@
       document.getElementById('ui-form-guest-count').innerText = `#${currentGuestIdx + 1}`;
       const cpB = document.getElementById('ui-btn-copy-address');
       (currentGuestIdx > 0) ? cpB.classList.remove('hidden') : cpB.classList.add('hidden');
+      
       if (guests[currentGuestIdx]) {
         const d = guests[currentGuestIdx]; const f = document.getElementById('checkinForm');
         f.name.value = d.name; f.address.value = d.address; f.job.value = d.job; f.age.value = d.age;
@@ -345,8 +337,8 @@
 
     function nextGuest() {
       const f = document.getElementById('checkinForm');
-      if (!f.name.value || !f.address.value) return alert(i18n[selectedLang].alertField);
-      if (i18n[selectedLang].passportRequired && !document.getElementById('passportData').value) return alert(i18n[selectedLang].alertPhoto);
+      if (!f.name.value || !f.address.value) return alert(i18n[selectedLang].alertField || "Field required");
+      if (i18n[selectedLang].passportRequired && !document.getElementById('passportData').value) return alert(i18n[selectedLang].alertPhoto || "Photo required");
       saveCurrentGuestData(); currentGuestIdx++; updateGuestFormDisplay(); window.scrollTo(0,0);
     }
 
@@ -357,7 +349,7 @@
 
     function toConfirmation() {
       const f = document.getElementById('checkinForm');
-      if (!f.name.value || !f.address.value) return alert(i18n[selectedLang].alertField);
+      if (!f.name.value || !f.address.value) return alert(i18n[selectedLang].alertField || "Field required");
       saveCurrentGuestData(); const t = i18n[selectedLang];
       
       const initial12Plus = Number(document.getElementById('numPeople').value);
@@ -382,17 +374,16 @@
         item.innerHTML = `
           <div class="absolute top-0 right-0 bg-indigo-600 text-white px-3 py-1 text-xs font-bold">#${i+1}</div>
           <div class="space-y-1">
-            <p class="text-xs text-slate-400 font-bold uppercase text-left">${t.name}</p><p class="font-black text-lg text-slate-800 text-left font-sans font-sans">${g.name}</p>
-            <p class="text-xs text-slate-400 font-bold uppercase pt-2 text-left font-sans font-sans">${t.address}</p><p class="text-slate-600 leading-tight text-left font-sans font-sans">${g.address}</p>
+            <p class="text-xs text-slate-400 font-bold uppercase text-left">${t.name}</p><p class="font-black text-lg text-slate-800 text-left font-sans">${g.name}</p>
+            <p class="text-xs text-slate-400 font-bold uppercase pt-2 text-left">${t.address}</p><p class="text-slate-600 leading-tight text-left font-sans">${g.address}</p>
             <div class="flex gap-4 pt-2 text-left">
-              <div><p class="text-[10px] text-slate-400 font-bold uppercase text-left font-sans font-sans font-sans">${t.age}</p><p class="font-bold text-left font-sans font-sans font-sans">${g.age}</p></div>
-              <div><p class="text-[10px] text-slate-400 font-bold uppercase text-left font-sans font-sans font-sans font-sans">${t.gender}</p><p class="font-bold text-left font-sans font-sans font-sans font-sans font-sans">${genT}</p></div>
+              <div><p class="text-[10px] text-slate-400 font-bold uppercase text-left font-sans">${t.age}</p><p class="font-bold text-left font-sans">${g.age}</p></div>
+              <div><p class="text-[10px] text-slate-400 font-bold uppercase text-left font-sans font-sans">${t.gender}</p><p class="font-bold text-left font-sans font-sans">${genT}</p></div>
             </div>
           </div>`;
         list.appendChild(item);
       });
       document.getElementById('ui-confirm-title').innerText = t.confirmTitle;
-      document.getElementById('ui-btn-confirm-back').innerText = t.back;
       document.getElementById('ui-btn-confirm-next').innerText = t.next;
       showScreen('screen-confirm');
     }
@@ -409,23 +400,21 @@
       showScreen('screen-payment');
     }
 
-    // ★重要：GitHub PagesからGASへデータを飛ばす処理
     async function submitAll() {
       const b = document.getElementById('ui-btn-pay-complete'); b.disabled = true; b.innerHTML = '⏳ Processing...';
       const p = { selectedLang: selectedLang, numPeople: document.getElementById('numPeople').value, numNights: document.getElementById('numNights').value, guests: guests };
       
       try {
-        const response = await fetch(GAS_WEB_APP_URL, {
+        await fetch(GAS_WEB_APP_URL, {
           method: 'POST',
           body: JSON.stringify(p),
-          mode: 'no-cors' // GASの制限上 no-cors を使う場合がありますが、doPostの設定により success 受信を工夫します
+          mode: 'no-cors' 
         });
-        
-        // 成功時の演出へ（no-corsの場合レスポンス内容は読めないため、完了とみなす）
         showSuccess();
       } catch (e) {
-        alert("送信中にエラーが発生しました。");
+        alert("送信エラーが発生しました。");
         b.disabled = false;
+        b.innerText = i18n[selectedLang].payComplete;
       }
     }
 
@@ -440,19 +429,11 @@
     async function initCamera() {
       if (currentStream) { currentStream.getTracks().forEach(t => t.stop()); currentStream = null; }
       try {
-        const constraints = { video: { facingMode: currentFacingMode } };
-        currentStream = await navigator.mediaDevices.getUserMedia(constraints);
+        currentStream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: currentFacingMode } });
         const video = document.getElementById('video');
         video.srcObject = currentStream;
         video.onloadedmetadata = () => { video.play(); };
-        video.classList.remove('mirror');
-        
-        const dev = await navigator.mediaDevices.enumerateDevices();
-        if (dev.filter(d => d.kind === 'videoinput').length > 1) document.getElementById('switchBtn').classList.remove('hidden');
-      } catch (e) { 
-        console.error("Camera Error:", e);
-        alert("カメラの起動に失敗しました。このサイト（GitHub Pages）にカメラの許可を与えてください。");
-      }
+      } catch (e) { alert("カメラの起動に失敗しました。"); }
     }
 
     function toggleCamera() { currentFacingMode = (currentFacingMode === 'user' ? 'environment' : 'user'); initCamera(); }
